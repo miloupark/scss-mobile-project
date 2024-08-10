@@ -1,0 +1,6 @@
+@use "./abstracts/" as *;
+@use "./base/" as *;
+// reset은 abstracts 뒤에와야 함
+@use "./components/" as *;
+@use "./layout/" as *;
+@use "./pages/mao";

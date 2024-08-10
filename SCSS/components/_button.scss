@@ -1,0 +1,28 @@
+@use "../abstracts/" as *;
+
+// 공통부분을 extend로 빼서 넣어줌
+%iconButton {
+  display: inline-block;
+  width: rem(16);
+  height: rem(16);
+  .header & {
+    // 부모 header 클래스 안에 있을 경우 32*40
+    width: rem(32);
+    height: rem(40);
+  }
+}
+
+.btn-prev {
+  @include background("ico_prev.svg", center);
+  @extend %iconButton;
+}
+
+.btn-search {
+  @include background("ico_search.svg", center);
+  @extend %iconButton;
+}
+
+.btn-menu {
+  @include background("ico_menu.svg", center);
+  @extend %iconButton;
+}

@@ -1,0 +1,17 @@
+@use "../abstracts/" as *;
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: rem(4);
+  span {
+    padding: rem(5) rem(6);
+    color: $gray4b;
+    font-size: rem(10);
+    line-height: rem(10);
+    letter-spacing: rem(-0.5);
+    border-radius: rem(16);
+    border: rem(1) solid $grayd7;
+    background: $grayfa;
+  }
+}

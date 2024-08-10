@@ -1,0 +1,14 @@
+@use "../abstracts/" as *;
+
+.footer {
+  padding: rem(31) 0 rem(33);
+  background-color: $gray66;
+  border-top: rem(2) solid var(--Primary_Color_01, $primary);
+  text-align: center;
+  color: #fff;
+  &__copy {
+    color: var(--white, $white);
+    font-family: $eng;
+    font-size: rem(11);
+  }
+}

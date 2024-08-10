@@ -1,0 +1,6 @@
+@use "../abstracts" as *;
+
+.line-type1 {
+  border: none;
+  border-top: rem(1) solid $gray99;
+}

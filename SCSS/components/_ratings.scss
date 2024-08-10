@@ -1,0 +1,32 @@
+@use "../abstracts/" as *;
+
+.ratings {
+  @include background("bg_ratings.svg");
+  padding-left: rem(82);
+  color: $gray21;
+  font-size: rem(14);
+  line-height: rem(14);
+  letter-spacing: rem(-0.5);
+  font-weight: 700;
+  &::after {
+    content: attr(data-score) ".0";
+    // HTML 데이터 속성 attribute 함수
+  }
+  @for $index from 0 through 5 {
+    $result: $index * 14;
+    &[data-score="#{$index}"] {
+      background-position: 0 rem(-$result);
+    }
+  }
+  // 상단의 for문으로 돌릴 수 있음
+  // &[data-score="0"] {
+  //   background-position: 0 0;
+  // }
+  // &[data-score="1"] {
+  //   background-position: 0 rem(-14);
+  //   // 이미지 전체 높이84 / 6개 라인 = 14
+  // }
+  // &[data-score="2"] {
+  //   background-position: 0 rem(-28);
+  // }
+}

@@ -1,0 +1,18 @@
+@use "../abstracts/" as *;
+
+.text-type1 {
+  color: $gray21;
+  font-size: rem(16);
+  line-height: 100%;
+  letter-spacing: rem(-0.5);
+}
+
+.text-type2 {
+  color: $gray21;
+  font-size: rem(14);
+  line-height: rem(14);
+  letter-spacing: rem(-1);
+  .list-type1 & {
+    @include ellipsis(2);
+  }
+}
