@@ -1,0 +1,63 @@
+@use "../abstracts/" as *;
+
+caption {
+  @include a11y-hidden;
+}
+
+.table-type1 {
+  border-bottom: rem(1) solid $grayea;
+  :is(th, td) {
+    // th, td {}와 동일함! is란?
+    padding-block: rem(16);
+  }
+  tr {
+    border-top: rem(1) solid $grayea;
+  }
+  th {
+    text-align: left;
+    color: $gray21;
+    font-size: rem(14);
+    line-height: rem(14);
+    letter-spacing: rem(-0.5);
+  }
+  td {
+    color: $gray4b;
+    font-size: rem(14);
+    line-height: rem(14);
+  }
+}
+
+.table-type2 {
+  thead {
+    border-top: rem(1) solid $primary;
+    border-bottom: rem(1) solid $primary;
+    background: $grayfa;
+    th {
+      padding-block: rem(12);
+      color: $gray21;
+      font-size: rem(12);
+      font-weight: 400;
+      line-height: rem(12);
+      letter-spacing: rem(-0.5);
+      + th {
+        border-left: rem(1) solid $grayd7;
+      }
+    }
+  }
+  tbody {
+    tr {
+      border-bottom: rem(1) solid $grayea;
+      color: $gray4b;
+      font-size: rem(12);
+      line-height: rem(12);
+      letter-spacing: rem(-0.5);
+      text-align: center;
+    }
+    td {
+      padding-block: rem(11);
+      + td {
+        border-left: rem(1) solid $grayd7;
+      }
+    }
+  }
+}

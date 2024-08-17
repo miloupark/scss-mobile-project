@@ -14,5 +14,37 @@
   letter-spacing: rem(-1);
   .list-type1 & {
     @include ellipsis(2);
+    // 말줄임표 2줄로
+  }
+  .list-type2 & {
+    @include ellipsis(2);
+    font-size: rem(16);
+    line-height: rem(16);
+  }
+  .list-type3 & {
+    @include ellipsis(2);
+    font-size: rem(16);
+    line-height: rem(16);
+  }
+}
+
+.heading {
+  // 다중 클래스에 base가 있을경우
+  &.base {
+    display: flex;
+    align-items: center;
+    gap: rem(10);
+    color: $gray21;
+    font-size: rem(14);
+    font-weight: 700;
+    line-height: 100%;
+    letter-spacing: rem(-0.5);
+    &::before {
+      content: "";
+      width: rem(8);
+      height: rem(8);
+      border-radius: rem(2);
+      background: $primary;
+    }
   }
 }

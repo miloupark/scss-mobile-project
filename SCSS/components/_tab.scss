@@ -40,3 +40,32 @@
     }
   }
 }
+
+.tab-type2 {
+  ul {
+    display: flex;
+  }
+  li {
+    flex: 1;
+  }
+  button {
+    $offColor: $grayea;
+    $onColor: $primary;
+
+    width: 100%;
+    padding-block: rem(14);
+    color: $gray21;
+    font-size: rem(14);
+    line-height: rem(14);
+    letter-spacing: rem(-0.5);
+    background-image: linear-gradient(to bottom, $offColor, $offColor);
+    background-size: 100% rem(2);
+    background-repeat: no-repeat;
+    background-position: bottom;
+    &.--active {
+      background-image: linear-gradient(to bottom, $onColor, $onColor);
+      font-weight: 700;
+      color: $onColor;
+    }
+  }
+}

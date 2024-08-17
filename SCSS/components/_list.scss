@@ -19,29 +19,36 @@
   }
 }
 
-.thumbnail {
-  overflow: hidden;
-  font-size: 0;
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: 0.5s;
-    &:hover {
-      .list-type1 & {
-        transform: scale(1.2);
-      }
-    }
-  }
-  .list-type1 & {
-    // list-type1에서만
-    border-radius: rem(8) rem(8) 0 0;
-  }
-}
-
 .category {
   color: $gray33;
   font-size: rem(10);
   line-height: 100%;
   letter-spacing: rem(-0.5);
+}
+
+.list-type2 {
+  a {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: rem(16);
+  }
+  &__content {
+    display: grid;
+    grid-template-rows: min-content 1fr;
+    gap: rem(16);
+    .tags {
+      align-self: start;
+    }
+  }
+}
+
+.list-type3 {
+  &__content {
+    display: grid;
+    gap: rem(16);
+    padding: rem(16);
+    border-radius: 0 0 rem(8) rem(8);
+    border: rem(1) solid $grayea;
+    border-top: none;
+  }
 }

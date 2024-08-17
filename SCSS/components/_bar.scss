@@ -22,3 +22,12 @@
     color: $primary;
   }
 }
+
+.bar-type3 {
+  @include bar(bg, 6, 11, "bu_arrow_right.svg", 8);
+  li {
+    color: $gray4b;
+    font-size: rem(14);
+    line-height: 14px;
+  }
+}

@@ -1,0 +1,27 @@
+@use "../abstracts/" as *;
+
+.thumbnail {
+  overflow: hidden;
+  font-size: 0;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 0.5s;
+    &:hover {
+      .list-type1 & {
+        transform: scale(1.2);
+      }
+    }
+  }
+  .list-type1 & {
+    // list-type1에서만
+    border-radius: rem(8) rem(8) 0 0;
+  }
+  .list-type2 & {
+    border-radius: rem(8);
+  }
+  .list-type3 & {
+    border-radius: rem(8) rem(8) 0 0;
+  }
+}

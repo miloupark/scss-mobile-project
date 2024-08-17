@@ -1,3 +1,6 @@
+@use "../abstracts/" as *;
+
+// 정렬과 관련
 .align {
   display: flex;
   &.right {
@@ -47,4 +50,27 @@
   &-right {
     text-align: right;
   }
+}
+
+.fix-bottom {
+  @include position(f, left, 0, bottom, 0);
+  // @include position(f, left, 50%, bottom, 50%);
+  // 이런식으로 %로 위치를 변경해주면 된다!
+  // position 믹스인 css컴파일을 확인하면
+  // position: fixed;
+  // left: 50%;
+  // bottom: 0;
+  // z-index: var(--z, 1);
+  // translate: -50%;
+  //  <div class="fix-bottom" style="--z: 100">
+  // index값이 기본인 1이 들어가있지만(mixin에서 확인가능)을 조절해줄 수도 있음
+  padding: rem(20) rem(16) rem(24);
+  width: 100%;
+  box-sizing: border-box;
+  background: $white;
+}
+body:has(.fix-bottom) {
+  // body 안에 자손 중에 .fix-bottom가 있으면 padding-bottom 적용
+  padding-bottom: var(--pb, rem(44));
+  // --pb를 스크립트로 받아야하고 안 받을 경우 기본으로 44가 적용!
 }
