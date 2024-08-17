@@ -15,6 +15,10 @@
 .btn-prev {
   @include background("ico_prev.svg", center);
   @extend %iconButton;
+  .white & {
+    // 부모 클래스 white가 있으면 아이콘 이미지가 변경돔
+    @include background("ico_prev_blue.svg", center);
+  }
 }
 
 .btn-search {

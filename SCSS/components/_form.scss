@@ -1,4 +1,6 @@
 @use "../abstracts/" as *;
+@use "sass:list";
+// 배열을 조회하기 위해서 작성해줌
 
 // mixin은 함수 인수. map은 객체 ! 데이터..! 같은 값으로 제어할 때내가 정의한 값을 계속 사용..
 
@@ -73,37 +75,7 @@ $selectSettings: (
   "paddingInline": 12,
 );
 
-.input {
-  @extend %form;
-  // 만약 height가 50인게 있다면 이렇게 따로 적어주면 됨!
-  // @extend %form;은 기본 값으로 들고다니고 특수한 경우에는 따로 이렇게 적어주면 됨
-  // .body & {
-  //   height: rem(50);
-  // }
-}
-
-.select {
-  // select의 우측여백값 = input의 좌측여백 * 2 + 이미지가로크기;
-  $result: map-get($selectSettings, paddingInline) * 2 + map-get($selectSettings, bgWidth);
-  // @debug $result; //데이터 확인
-  @extend %form;
-  @include background(map-get($selectSettings, bgUrl), right map-get($selectSettings, iconPosition) center);
-  padding-right: rem($result);
-  appearance: none;
-  //기본 화살표 없애기
-}
-
-// radio와 checkbox가 동일함으로 extend로 정리
-%label {
-  display: flex;
-  gap: 4px;
-  align-items: center;
-  color: $gray4b;
-  font-size: rem(12);
-  line-height: 1;
-  letter-spacing: rem(-0.5);
-}
-
+// 라디오 & 체크박스 디자인 정의
 // [과정1]
 // map
 // $radioSetting: (
@@ -120,6 +92,82 @@ $selectSettings: (
 //   "width": rem(24),
 //   "height": rem(24),
 // );
+
+// [과정2] 상단의 코드를 이렇게 배열로? 정리해줄 수 있음
+$radioCheckSetting: (
+  1: (
+    "className": ".radio-type1",
+    "offImage": "ico_radio_off.svg",
+    "onImage": "ico_radio_on.svg",
+    "width": rem(24),
+    "height": rem(24),
+  ),
+  2: (
+    "className": ".check-type1",
+    "offImage": "ico_check_off.svg",
+    "onImage": "ico_check_on.svg",
+    "width": rem(24),
+    "height": rem(24),
+  ),
+);
+
+.tel {
+  display: flex;
+  gap: rem(8);
+  > * {
+    flex: 1;
+  }
+}
+
+.radio-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: rem(4) rem(10);
+  font-size: 0;
+}
+
+.address {
+  display: grid;
+  grid-template-columns: 1fr rem(79);
+  gap: rem(4) rem(9);
+  [type="text"] {
+    grid-column: 1 / -1;
+  }
+}
+
+.input {
+  @extend %form;
+  width: var(--w, 100%);
+  // 만약 height가 50인게 있다면 이렇게 따로 적어주면 됨!
+  // @extend %form;은 기본 값으로 들고다니고 특수한 경우에는 따로 이렇게 적어주면 됨
+  // .body & {
+  //   height: rem(50);
+  // }
+}
+
+.select {
+  // select의 우측여백값 = input의 좌측여백 * 2 + 이미지가로크기;
+  $result: map-get($selectSettings, paddingInline) * 2 + map-get($selectSettings, bgWidth);
+  // @debug $result; //데이터 확인
+
+  @extend %form;
+  @include background(map-get($selectSettings, bgUrl), right map-get($selectSettings, iconPosition) center);
+  padding-right: rem($result);
+  appearance: none;
+  //기본 화살표 없애기
+  width: var(--w, 100%);
+}
+
+// radio와 checkbox가 동일함으로 extend로 정리
+%label {
+  display: inline-flex;
+  gap: 4px;
+  align-items: center;
+  color: $gray4b;
+  font-size: rem(12);
+  line-height: 1;
+  letter-spacing: rem(-0.5);
+}
 
 // @mixin Radio($mapName) {
 //   #{map-get($mapName, className)} {
@@ -146,24 +194,6 @@ $selectSettings: (
 // @include Radio($radioSetting);
 // @include Radio($radioSetting2);
 
-// [과정2] 상단의 코드를 이렇게 배열로? 정리해줄 수 있음
-$radioSetting: (
-  1: (
-    "className": ".radio-type1",
-    "offImage": "ico_radio_off.svg",
-    "onImage": "ico_radio_on.svg",
-    "width": rem(24),
-    "height": rem(24),
-  ),
-  2: (
-    "className": ".radio-type2",
-    "offImage": "ico_radio_off.svg",
-    "onImage": "ico_radio_on.svg",
-    "width": rem(24),
-    "height": rem(24),
-  ),
-);
-
 @mixin Radio($mapName, $index) {
   #{map-get($mapName, $index, className)} {
     @include a11y-hidden;
@@ -186,5 +216,16 @@ $radioSetting: (
   }
 }
 
-@include Radio($radioSetting, 1);
-@include Radio($radioSetting, 2);
+// 점점 많아지면 길어짐으로 아래와 같이 정리해줄 수 있다
+// @include Radio($radioSetting, 1);
+// @include Radio($radioSetting, 2);
+
+// radio가 갯수가 많아지면 아래 2숫자부분을 갯수만큼 늘려주면 된다
+// 하지만 갯수만큼 늘려주기 까다로우므로 하단과 같이 list.lenght로 받아준다
+// @for $idx from 1 through 2 {
+//   @include Radio($radioSetting, $idx);
+// }
+
+@for $idx from 1 through list.length($radioCheckSetting) {
+  @include Radio($radioCheckSetting, $idx);
+}

@@ -23,4 +23,12 @@
     order: 3;
     justify-self: end;
   }
+  // 다중 클래스로 white가 붙을 경우
+  &.white {
+    background: $white;
+    border-bottom: rem(1) solid $primary;
+    h1 {
+      color: $gray21;
+    }
+  }
 }

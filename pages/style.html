@@ -157,11 +157,11 @@
               <tbody>
                 <tr>
                   <th>제목</th>
-                  <th>내용</th>
+                  <td>내용</td>
                 </tr>
                 <tr>
                   <th>제목</th>
-                  <th>내용</th>
+                  <td>내용</td>
                 </tr>
               </tbody>
             </table>
@@ -194,6 +194,13 @@
                 </tr>
               </tbody>
             </table>
+            <h2>table-type3</h2>
+            <div class="table-type3">
+              <div class="--title">제목</div>
+              <div class="--content">내용</div>
+              <div class="--title top">제목</div>
+              <div class="--content">내용 <br />내용 <br />내용 <br /></div>
+            </div>
           </div>
         </details>
         <details name="guide">
@@ -236,22 +243,45 @@
             </nav>
           </div>
         </details>
-        <details name="guide" open>
+        <details name="guide">
           <summary>폼 가이드</summary>
           <div>
             <h2>폼 공통정의</h2>
             <input type="text" class="input" />input <br />
             <input type="text" class="input" value="value" />input <br />
             <input type="text" class="input" placeholder="placeholder" /><br />
-            <input type="text" class="input" disabled /> disabled <br />
-            <input type="text" class="input" readonly /> readonly <br />
+            disabled <input type="text" class="input" disabled /> <br />
+            readonly <input type="text" class="input" readonly /> <br />
             <h2>Select 정의</h2>
             <select name="" id="" class="select">
               <option value="">선택하세요.</option>
             </select>
             <h2>Radio & Checkbox 정의</h2>
             <input type="radio" class="radio-type1" name="radio" id="radio1_1" /><label for="radio1_1">선택1</label> <br />
-            <input type="radio" class="radio-type1" name="radio" id="radio1_2" /><label for="radio1_2">선택2</label>
+            <input type="radio" class="radio-type1" name="radio" id="radio1_2" /><label for="radio1_2">선택2</label><br />
+            <input type="checkbox" class="check-type1" name="radio" id="check1_1" /><label for="check1_1">선택1</label> <br />
+            <input type="checkbox" class="check-type1" name="radio" id="check1_2" /><label for="check1_2">선택2</label>
+          </div>
+          <h2>휴대전화</h2>
+          <div class="tel">
+            <select class="select" title="휴대전화 첫번째자리">
+              <option>010</option>
+            </select>
+            <input type="tel" class="input" title="휴대전화 중간자리" />
+            <input type="tel" class="input" title="휴대전화 마지막자리" />
+          </div>
+          <h2>라디오 그룹</h2>
+          <div class="radio-group">
+            <div><input type="radio" class="radio-type1" name="radio3" id="radio3_1" /><label for="radio3_1">선택1</label></div>
+            <div><input type="radio" class="radio-type1" name="radio3" id="radio3_2" /><label for="radio3_2">선택1</label></div>
+            <div><input type="radio" class="radio-type1" name="radio3" id="radio3_3" /><label for="radio3_3">선택1</label></div>
+          </div>
+          <h2>주소</h2>
+          <div class="address">
+            <input type="number" class="input" title="우편번호" readonly />
+            <button>우편번호 찾기</button>
+            <input type="text" class="input" title="기본주소" readonly />
+            <input type="text" class="input" placeholder="상제주소를 입력하세요." />
           </div>
         </details>
       </div>
