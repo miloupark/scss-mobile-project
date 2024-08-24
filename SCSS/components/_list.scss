@@ -1,4 +1,5 @@
 @use "../abstracts/" as *;
+@use "./text" as *;
 
 .list-type1 {
   display: grid;
@@ -50,5 +51,111 @@
     border-radius: 0 0 rem(8) rem(8);
     border: rem(1) solid $grayea;
     border-top: none;
+  }
+}
+
+// 하단의 mixin으로 받을 경우
+// .list-type4 {
+//   color: $gray4b;
+//   font-size: rem(14);
+//   line-height: rem(24);
+//   letter-spacing: rem(-0.5);
+//   li {
+//     display: grid;
+//     grid-template-columns: min-content 1fr;
+//     align-items: center;
+//     &::before {
+//       display: inline-block;
+//       content: "";
+//       width: rem(4);
+//       aspect-ratio: 1;
+//       margin-inline: rem(5);
+//       background-color: $gray4b;
+//       border-radius: rem(100);
+//     }
+//   }
+// }
+$listStyle: (
+  1: (
+    "className": ".list-type4",
+    "marker": "dot",
+    // ※
+    "color": $gray4b,
+    "textType": ".text-type3",
+    "width": 4,
+    "height": 4,
+    "radius": 100,
+    "margin": rem(10) rem(4) 0,
+  ),
+);
+
+// 기존 text정의가 있을경우 extend하여 중복 작성을 방지한다.
+// @mixin textType($textComponent) {
+//   // textComponent가 존재할 때 실행
+//   @if $textComponent {
+//     @extend #{$textComponent};
+//   }
+// }
+
+@mixin listStyle($varName, $index) {
+  #{map-get($varName, $index, className)} {
+    color: map-get($varName, $index, color);
+
+    // 기능 분리로 mixin을 재정의한다.
+    // @include textType(map-get($listStyle, textType));
+
+    // 기능 분리하지 않으면 아래와 같이 쓴다.
+    @if map-get($varName, $index, textType) {
+      @extend #{map-get($varName, $index, textType)};
+    }
+
+    li {
+      display: grid;
+      grid-template-columns: min-content 1fr;
+      align-items: center;
+      @content;
+      // mixin 뒤에 또 작성하고 싶은 부분을 이어서 작성할 수 있다.
+      &::before {
+        display: inline-block;
+        margin: map-get($varName, $index, margin);
+        align-self: start;
+
+        @if map-get($varName, $index, marker) == "※" or map-get($listStyle, $index, marker) == "*" {
+          content: map-get($varName, $index, marker);
+        } @else {
+          content: "";
+          width: rem(map-get($varName, $index, width));
+          height: rem(map-get($varName, $index, height));
+          background-color: map-get($varName, $index, color);
+          @if map-get($varName, $index, radius) {
+            border-radius: rem(map-get($varName, $index, radius));
+          }
+        }
+      }
+    }
+  }
+}
+
+@include listStyle($listStyle, 1);
+
+// 만약 추가작성할 CSS코드가 있다면 {}안쪽에 추가 작성한다.
+// @include listStyle($listStyle, 1) {
+//   line-height:2;
+//   main & {
+//     color: blue;
+//   }
+// }
+
+.list-type5 {
+  > li {
+    position: relative;
+    a {
+      display: grid;
+      gap: rem(16);
+      padding-block: rem(24);
+    }
+    + li {
+      border-top: rem(1) solid $grayea;
+    }
   }
 }

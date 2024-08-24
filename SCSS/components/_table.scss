@@ -13,7 +13,7 @@ table {
   border-bottom: rem(1) solid $grayea;
 
   :is(th, td) {
-    // th, td {}와 동일함! is란?
+    // is?란 th, td {}와 동일함!
     padding-block: rem(16);
   }
   tr {

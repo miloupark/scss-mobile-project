@@ -1,3 +1,5 @@
+@use "sass:list";
+// 배열을 조회하기 위해서 작성해줌
 @use "../abstracts/" as *;
 
 // 공통부분을 extend로 빼서 넣어줌
@@ -11,6 +13,71 @@
     height: rem(40);
   }
 }
+
+$buttonSize: (
+  1: (
+    "className": ".base",
+    // "className": base,
+    "height": 40,
+    "fontSize": 16,
+    "paddingInline": 25,
+    "borderWidth": 1,
+    "fontWeight": null,
+  ),
+  2: (
+    "className": ".lg",
+    "height": 60,
+    "fontSize": 16,
+    "paddingInline": 30,
+    "borderWidth": 1,
+    "fontWeight": 700,
+  ),
+);
+
+$buttonColor: (
+  1: (
+    "className": ".blue",
+    "bgColor": $primary,
+    "color": $white,
+    "borderColor": $primary,
+  ),
+  2: (
+    "className": ".white",
+    "bgColor": $white,
+    "color": $gray21,
+    "borderColor": $gray99,
+  ),
+  3: (
+    "className": ".lightgray",
+    "bgColor": $grayf5,
+    "color": $gray4b,
+    "borderColor": $gray99,
+  ),
+);
+
+$buttonIcon: (
+  1: (
+    "className": ".ico1",
+    "direction": after,
+    "imgName": "ico_book.svg",
+    "width": 16,
+    "height": 16,
+  ),
+  2: (
+    "className": ".ico2",
+    "direction": after,
+    "imgName": "ico_write.svg",
+    "width": 16,
+    "height": 16,
+  ),
+  3: (
+    "className": ".ico3",
+    "direction": after,
+    "imgName": "ico_scrap.svg",
+    "width": 16,
+    "height": 16,
+  ),
+);
 
 .btn-prev {
   @include background("ico_prev.svg", center);
@@ -29,4 +96,314 @@
 .btn-menu {
   @include background("ico_menu.svg", center);
   @extend %iconButton;
+}
+.btn-more {
+  @include background("ico_more.svg", center);
+  width: rem(18);
+  height: rem(18);
+  .list-type5 & {
+    @include position(a, right, rem(-8), bottom, rem(28));
+  }
+}
+
+// 공통
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: rem(8);
+  box-sizing: border-box;
+  // &.base {
+  //   height: rem(40);
+  //   font-size: rem(16);
+  //   padding-inline: rem(25);
+  //   border: rem(1) solid;
+  // }
+  // &.lg {
+  //   height: rem(60);
+  //   font-size: rem(16);
+  //   padding-inline: rem(30);
+  //   font-weight: 700;
+  //   border: rem(1) solid;
+  // }
+  &.fullsize {
+    width: 100%;
+  }
+}
+
+// 순서1
+// @mixin buttonSize {
+//   &.base {
+//     height: rem(40);
+//     font-size: rem(16);
+//     padding-inline: rem(25);
+//     border: rem(1) solid;
+//   }
+// }
+
+// 순서2 매개변수 삽입
+// @mixin buttonSize($height, $fs, $padding, $border, $fw) {
+//   &.base {
+//     height: $height;
+//     font-size: $fs;
+//     padding-inline: $padding;
+//     border: $border solid;
+//     font-weight: $fw;
+//   }
+// }
+
+// 순서3 실행
+// @include buttonSize(rem(40), rem(16), rem(25), rem(1), 400);
+
+// 순서4 rem함수 삽입 및 기본값 정의
+// @mixin buttonSize($height, $fs, $padding, $border, $fw: 400) {
+//   &.base {
+//     height: rem($height);
+//     font-size: rem($fs);
+//     padding-inline: rem($padding);
+//     border: rem($border) solid;
+//     font-weight: $fw;
+//   }
+// }
+// @include buttonSize(40, 16, 25, 1);
+
+// 순서5 믹스인의 인수르 순서를 다 기억할 수 없기 때문에 map형 변수로 변환하여 삽입하기
+// $buttonSize: (
+//   "className": ".base",
+//   // "className": base,
+//   "fontSize": 16,
+//   "paddingInline": 25,
+//   "borderWidth": 1,
+//   "fontWeight": null,
+// );
+
+// @mixin buttonSize($className, $height, $fs, $padding, $border, $fw: 400) {
+//   &#{$className} {
+//     // &.#{$className} {
+//     height: rem($height);
+//     font-size: rem($fs);
+//     padding-inline: rem($padding);
+//     border: rem($border) solid;
+//     font-weight: $fw;
+//   }
+// }
+// @include buttonSize(map-get($buttonSize, height), map-get($buttonSize, fontSize), map-get($buttonSize, paddingInline), map-get($buttonSize, borderWidth));
+
+// 순서6 : map-get을 믹스인으로 삽입하여 코드를 간소화한다.
+// $buttonSize: (
+//   "className": ".base",
+//   // "className": base,
+//   "fontSize": 16,
+//   "paddingInline": 25,
+//   "borderWidth": 1,
+//   "fontWeight": null,
+// );
+
+// @mixin buttonSize($varName) {
+//   &#{map-get($varName, className)} {
+//     // &.#{$className} {
+//     height: rem(map-get($varName, height));
+//     font-size: rem(map-get($varName, fontSize));
+//     padding-inline: rem(map-get($varName, paddingInline));
+//     border: rem(map-get($varName, borderWidth)) solid;
+//     font-weight: (map-get($varName, fontWeight);
+//   }
+// }
+// .btn {
+//   @include buttonSize($buttonSize);
+// }
+
+// 순서7 : map변수를 배열로 만들어 데이터를 만들어 관리한다.
+// $buttonSize: (
+//   1: (
+//     "className": ".base",
+//     // "className": base,
+//     "height": 40,
+//     "fontSize": 16,
+//     "paddingInline": 25,
+//     "borderWidth": 1,
+//     "fontWeight": null,
+//   ),
+//   2: (
+//     "className": ".lg",
+//     "height": 60,
+//     "fontSize": 16,
+//     "paddingInline": 30,
+//     "borderWidth": 1,
+//     "fontWeight": 700,
+//   ),
+// );
+
+@mixin buttonSize($varName, $index) {
+  // varName이 buttonSize를 받고 그 안에 1, 2번을 index가 받고 안에 값들을 ""이 받음
+  &#{map-get($varName, $index, className)} {
+    // &.#{$className} {
+    height: rem(map-get($varName, $index, height));
+    font-size: rem(map-get($varName, $index, fontSize));
+    padding-inline: rem(map-get($varName, $index, paddingInline));
+    border: rem(map-get($varName, $index, borderWidth)) solid;
+    font-weight: map-get($varName, $index, fontWeight);
+  }
+}
+
+// .btn {
+//   // @include buttonSize($buttonSize, n번째 변수를 호출);
+//   @include buttonSize($buttonSize, 1);
+//   @include buttonSize($buttonSize, 2);
+// }
+
+// 순서8 : mixin을 실행할 때 변수 값의 갯수에 따라 수동으로 증가시켜야한다. 이를 보완
+.btn {
+  // @for $idx from 1 through 2 {
+  //   @include buttonSize($buttonSize, $idx);
+  // }
+  // 순서9 : 리스트형 변수(배열)의 갯수를 파악하는 length 함수를 추가 (상단에 @use "sass:list"; 추가)
+  @for $idx from 1 through list.length($buttonSize) {
+    @include buttonSize($buttonSize, $idx);
+  }
+}
+
+// 버튼 색상
+.btn {
+  // &.blue {
+  //   background-color: $primary;
+  //   color: $white;
+  //   border-color: $primary;
+  // }
+  // &.white {
+  //   background-color: $white;
+  //   color: $gray21;
+  //   border-color: $gray99;
+  // }
+}
+
+// 순서 1: 데이터와 믹스인 생성
+// $buttonColor: (
+//   "className": ".blue",
+//   "bgColor": $primary,
+//   "color": $white,
+//   "borderColor": $primary,
+// );
+
+// @mixin buttonColor {
+//   &.blue {
+//     background-color: $primary;
+//     color: $white;
+//     border-color: $primary;
+//   }
+// }
+// @include buttonColor;
+
+// 순서2 map데이터를 믹스인으로 연결
+// $buttonColor: (
+//   "className": ".blue",
+//   "bgColor": $primary,
+//   "color": $white,
+//   "borderColor": $primary,
+// );
+
+// @mixin buttonColor($varName) {
+//   &#{map-get($varName, className)} {
+//     background-color: map-get($varName, bgColor);
+//     color: map-get($varName, color);
+//     border-color: map-get($varName, borderColor);
+//   }
+// }
+// .btn {
+//   @include buttonColor($buttonColor);
+// }
+
+// 순서3 : map 데이터를 list + map 데이터로 전환하여 mixin을 실행
+// $buttonColor: (
+//   1: (
+//     "className": ".blue",
+//     "bgColor": $primary,
+//     "color": $white,
+//     "borderColor": $primary,
+//   ),
+//   2: (
+//     "className": ".white",
+//     "bgColor": $white,
+//     "color": $gray21,
+//     "borderColor": $gray99,
+//   ),
+// );
+
+@mixin buttonColor($varName, $index) {
+  &#{map-get($varName, $index, className)} {
+    background-color: map-get($varName, $index, bgColor);
+    color: map-get($varName, $index, color);
+    border-color: map-get($varName, $index, borderColor);
+  }
+}
+.btn {
+  @for $index from 1 through list.length($buttonColor) {
+    @include buttonColor($buttonColor, $index);
+  }
+}
+
+// .btn {
+//   &.ico1 {
+//     &::after {
+//       @include background("ico_book.svg");
+//       content: "";
+//       width: rem(16);
+//       height: rem(16);
+//     }
+//   }
+// }
+
+// 순서1 : 데이터 생성 및 믹스인 만들기
+// $buttonIcon: (
+//   "className": "ico1",
+//   "direction": after,
+//   "imgName": "ico_book.svg",
+//   "width": 16,
+//   "height": 16,
+// );
+
+// @mixin buttonIcon {
+//   &#{map-get($buttonIcon, className)} {
+//     &::#{map-get($buttonIcon, direction)} {
+//       @include background(map-get($buttonIcon, imgName));
+//       content: "";
+//       width: rem(map-get($buttonIcon, width));
+//       height: rem(map-get($buttonIcon, height));
+//     }
+//   }
+// }
+
+// 순서2 : 데이를 list + map으로 바꿔 적용
+// $buttonIcon: (
+//   1: (
+//     "className": ".ico1",
+//     "direction": after,
+//     "imgName": "ico_book.svg",
+//     "width": 16,
+//     "height": 16,
+//   ),
+//   2: (
+//     "className": ".ico2",
+//     "direction": before,
+//     "imgName": "ico_write.svg",
+//     "width": 16,
+//     "height": 16,
+//   ),
+// );
+
+@mixin buttonIcon($varName, $index) {
+  &#{map-get($varName, $index, className)} {
+    &::#{map-get($varName, $index, direction)} {
+      @include background(map-get($varName, $index, imgName));
+      content: "";
+      width: rem(map-get($varName, $index, width));
+      height: rem(map-get($varName, $index, height));
+    }
+  }
+}
+
+.btn {
+  @for $index from 1 through list.length($buttonIcon) {
+    @include buttonIcon($buttonIcon, $index);
+  }
 }

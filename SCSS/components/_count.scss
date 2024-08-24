@@ -1,0 +1,35 @@
+@use "../abstracts/" as *;
+
+%commonCount {
+  display: inline-flex;
+  align-items: center;
+  gap: rem(8);
+  color: $gray4b;
+  font-size: rem(11);
+  line-height: 1;
+  &::before {
+    content: "";
+    width: rem(24);
+    aspect-ratio: 1;
+  }
+}
+.count-group {
+  display: flex;
+  align-items: center;
+  gap: rem(8);
+  .list-type5 & {
+    margin-right: rem(10);
+  }
+}
+.view-count {
+  @extend %commonCount;
+  &::before {
+    @include background("ico_view.svg");
+  }
+}
+.comment-count {
+  @extend %commonCount;
+  &::before {
+    @include background("ico_comment.svg");
+  }
+}

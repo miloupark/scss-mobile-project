@@ -69,3 +69,46 @@
     }
   }
 }
+
+.tab-type3 {
+  ul {
+    overflow: auto;
+    display: flex;
+    border-bottom: rem(1) solid $graye1;
+  }
+  button {
+    white-space: nowrap;
+  }
+  .depth1 {
+    padding-inline: rem(6);
+    button {
+      padding: rem(20) rem(10);
+      color: $gray4b;
+      font-size: rem(14);
+      font-weight: 700;
+      line-height: rem(14);
+      &.--active {
+        color: $primary;
+      }
+    }
+  }
+  .depth2,
+  .depth3 {
+    // extend %로 묶어줘도 상관없음
+    padding: rem(16);
+    gap: rem(8);
+    button {
+      padding: rem(10) rem(12);
+      border-radius: rem(22);
+      border: rem(1) solid $grayea;
+      color: $gray4b;
+      font-size: rem(12);
+      line-height: 100%;
+      &.--active {
+        border-color: $primary;
+        background-color: $primary;
+        color: $white;
+      }
+    }
+  }
+}

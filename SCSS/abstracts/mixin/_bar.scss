@@ -3,6 +3,7 @@
 
 @mixin bar($method, $width, $height, $bg, $gap) {
   display: flex;
+  align-items: center;
   > * {
     + * {
       display: flex;

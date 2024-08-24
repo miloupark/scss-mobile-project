@@ -69,8 +69,26 @@
   box-sizing: border-box;
   background: $white;
 }
-body:has(.fix-bottom) {
-  // body 안에 자손 중에 .fix-bottom가 있으면 padding-bottom 적용
-  padding-bottom: var(--pb, rem(44));
-  // --pb를 스크립트로 받아야하고 안 받을 경우 기본으로 44가 적용!
+body {
+  $baseHeight: 44;
+  &:has(.fix-bottom) {
+    // body 안에 자손 중에 .fix-bottom가 있으면 padding-bottom 적용
+    padding-bottom: var(--pb, rem($baseHeight));
+    // --pb를 스크립트로 받아야하고 안 받을 경우 기본으로 44가 적용!
+  }
+  &:has(.fix-bottom .lg) {
+    $sum: 60 + $baseHeight;
+    padding-bottom: var(--pb, rem($sum));
+  }
+}
+
+.btn-layout1 {
+  display: grid;
+  grid-template-columns: rem(104) 1fr;
+  gap: rem(4);
+  &.fix-bottom {
+    button {
+      padding-inline: 0;
+    }
+  }
 }

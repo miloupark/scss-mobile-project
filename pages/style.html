@@ -53,6 +53,16 @@
             <div class="fix-bottom">
               <button>버튼</button>
             </div>
+
+            <h2>아이콘 정보</h2>
+            <div class="view-count">123,456</div>
+            <div class="comment-count">10</div>
+
+            <h2>아이콘 정보 그룹</h2>
+            <div class="count-group">
+              <div class="view-count">123,456</div>
+              <div class="comment-count">10</div>
+            </div>
           </div>
         </details>
 
@@ -168,7 +178,7 @@
             <h2>table-type2</h2>
             <table class="table-type2">
               <caption>
-                표 메목
+                표 제목
               </caption>
               <colgroup>
                 <col style="width: rem" />
@@ -210,21 +220,41 @@
             <p class="text-blue">.text-blue</p>
 
             <h2>제목 가이드</h2>
-            <h2 class="heading base">제목입니다.</h2>
+            <h2 class="heading base">.heading.base</h2>
+            <h2 class="heading base ico">.heading.base.ico</h2>
             <!-- xxxs xxs xs sm base md lg xl xxl xxxl -->
           </div>
         </details>
         <details name="guide">
           <summary>구분자(bar) 가이드</summary>
           <div>
+            <h2>bar-type1</h2>
+            <ul class="bar-type1">
+              <li>내용</li>
+              <li>내용</li>
+              <li>내용</li>
+            </ul>
+            <h2>bar-type2</h2>
+            <ul class="bar-type2">
+              <li>내용</li>
+              <li>내용</li>
+              <li>내용</li>
+            </ul>
+            <h2>bar-type3</h2>
             <ul class="bar-type3">
+              <li>내용</li>
+              <li>내용</li>
+              <li>내용</li>
+            </ul>
+            <h2>bar-type4</h2>
+            <ul class="bar-type4">
               <li>내용</li>
               <li>내용</li>
               <li>내용</li>
             </ul>
           </div>
         </details>
-        <details name="guide">
+        <details name="guide" open>
           <summary>탭 가이드</summary>
           <div>
             <h2>tab-type1</h2>
@@ -239,6 +269,34 @@
                 <li><button class="--active">탭1</button></li>
                 <li><button>탭2</button></li>
                 <li><button>탭3</button></li>
+              </ul>
+            </nav>
+            <h2>tab-type3</h2>
+            <nav class="tab-type3">
+              <ul class="depth1">
+                <li><button>전체</button></li>
+                <li><button>공통직무</button></li>
+                <li><button class="--active">리더십</button></li>
+                <li><button>산업분야별 직무</button></li>
+                <li><button>외국어</button></li>
+                <li><button>인문교양</button></li>
+                <li><button>자격</button></li>
+              </ul>
+              <ul class="depth2">
+                <li><button>전체</button></li>
+                <li><button class="--active">MBA</button></li>
+                <li><button>OA</button></li>
+                <li><button>경영인사이트</button></li>
+                <li><button>공유가치</button></li>
+                <li><button>건설</button></li>
+                <li><button>건설</button></li>
+              </ul>
+              <ul class="depth3">
+                <li><button>전체</button></li>
+                <li><button>MBA 금융</button></li>
+                <li><button class="--active">MBA 마케팅</button></li>
+                <li><button>MBA 생산서비스</button></li>
+                <li><button>건설</button></li>
               </ul>
             </nav>
           </div>
@@ -282,6 +340,58 @@
             <button>우편번호 찾기</button>
             <input type="text" class="input" title="기본주소" readonly />
             <input type="text" class="input" placeholder="상제주소를 입력하세요." />
+          </div>
+          <h2>select 그룹</h2>
+          <div class="select-group">
+            <select class="select" title="">
+              <option>선택</option>
+            </select>
+            <select class="select" title="">
+              <option>선택</option>
+            </select>
+          </div>
+        </details>
+        <details name="guide">
+          <summary>버튼 가이드</summary>
+          <div>
+            <!-- 다중클래스 버튼 구분 -->
+            <!-- 
+            [공통클래스]
+            .btn: 버튼 전체의 공통 속성 
+            box-sizing, inline-flex, align-items, gap
+
+            [크기]
+            .btn.base / .btn.lg / .btn.sm / .btn.xl / .btn/xs
+            높이, 글씨크기, 좌우여백, 외곽선 굵기
+
+            [색상]
+            .btn.blue / .btn.white / .btn.gray
+            배경색, 글씨색, 외곽선 색
+
+            [아이콘]  
+            .btn.ico1  / .btn.ico2 (클래스명)
+            방향(before, after), 크기 / 배경이미지 
+            아이콘만 있는 경우는 .btn-more / .btn-view
+            
+            [추가옵션]
+            좌우크기(width: 100%) : fullsize
+            모서리 둥글기(border-radius): rounded10 / rounded-full
+
+            [예시]
+            <a href="btn base white ico1"></a>
+            -->
+            <h2>버튼 크기</h2>
+            <a href="" class="btn base">.base</a>
+            <button class="btn lg">.lg</button>
+            <h2>버튼 색상</h2>
+            <a href="" class="btn base blue">.blue</a>
+            <a href="" class="btn base white">.white</a>
+            <h2>버튼 아이콘</h2>
+            <a href="" class="btn base blue ico1">ico1</a>
+            <a href="" class="btn base blue ico2">ico2</a>
+            <a href="" class="btn base blue ico3">ico3</a>
+            <h2>모서리 둥글기</h2>
+            <h2>버튼 예시</h2>
           </div>
         </details>
       </div>

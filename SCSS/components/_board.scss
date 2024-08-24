@@ -1,0 +1,6 @@
+@use "../abstracts/" as *;
+
+.board-write {
+  display: grid;
+  gap: rem(12);
+}

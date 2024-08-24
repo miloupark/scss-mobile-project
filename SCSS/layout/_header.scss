@@ -2,7 +2,7 @@
 
 .header {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: rem(70) 1fr rem(70);
   align-items: center;
   padding-inline: rem(12);
   height: rem(44);

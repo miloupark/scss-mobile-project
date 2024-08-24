@@ -28,6 +28,22 @@
   li {
     color: $gray4b;
     font-size: rem(14);
-    line-height: 14px;
+    line-height: rem(14);
+    .list-type5 & {
+      font-size: rem(12);
+      line-height: 1;
+      letter-spacing: rem(-0.5);
+    }
   }
+  .list-type5 & {
+    margin-bottom: rem(-8);
+  }
+}
+
+.bar-type4 {
+  color: $gray4b;
+  font-size: rem(11);
+  line-height: rem(11);
+  letter-spacing: rem(-0.5);
+  @include bar(line, 1, 11, $grayd7, 12);
 }

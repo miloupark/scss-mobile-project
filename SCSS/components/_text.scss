@@ -1,5 +1,25 @@
 @use "../abstracts/" as *;
 
+// 데이터로 변경한다면~
+// $textType: (
+//   1: (
+//     "fw": 400,
+//     "fs": 12,
+//     "lh": 1.4,
+//     "ls": -2,
+//     "c": $primary,
+//   ),
+// );
+
+// @mixin textType($varName, $index) {
+//   .text-type#{$index} {
+//     color: map-get($varName, $index, c);
+//     font-size: rem(16);
+//     line-height: 100%;
+//     letter-spacing: rem(-0.5);
+//   }
+// }
+
 .text-type1 {
   color: $gray21;
   font-size: rem(16);
@@ -32,6 +52,21 @@
     line-height: rem(16);
   }
 }
+.text-type3 {
+  color: $gray4b;
+  font-size: rem(14);
+  line-height: rem(24);
+  letter-spacing: rem(-0.5);
+}
+.text-type4 {
+  color: $gray21;
+  font-size: rem(16);
+  line-height: 1.5;
+  letter-spacing: rem(-1);
+  .list-type5 & {
+    @include ellipsis(2);
+  }
+}
 
 .heading {
   // 다중 클래스에 base가 있을경우
@@ -44,7 +79,7 @@
     font-weight: 700;
     line-height: 100%;
     letter-spacing: rem(-0.5);
-    &::before {
+    &.ico::before {
       content: "";
       width: rem(8);
       height: rem(8);
